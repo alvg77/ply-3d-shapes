@@ -156,7 +156,7 @@ Object3d Object3d::generateSphere(float radius) {
 
     sphere.vertices.push_back({0, 0, -radius});
 
-    std::function<unsigned(unsigned, unsigned)> calcVertexIdx = [&](unsigned lat, unsigned lon) -> unsigned {
+    const std::function<unsigned(unsigned, unsigned)> calcVertexIdx = [&](unsigned lat, unsigned lon) -> unsigned {
         if (lat == 0) return 0;
         if (lat == latSegments - 1) return sphere.vertices.size() - 1;
         return 1 + (lat - 1) * lonSegments + lon;
@@ -212,7 +212,7 @@ void Object3d::load(std::istream& is) {
     }
 
     if (!headerEnded) {
-        throw std::runtime_error("Could not parse line " + line);
+        throw std::runtime_error("File format invalid!");
     }
 
     vertices.resize(vertexCount);
