@@ -210,21 +210,29 @@ void Object3d::load(std::istream& is) {
     }
 
     if (!headerEnded) {
-        throw std::runtime_error("File format invalid!");
+        throw std::runtime_error("Invalid file format!");
     }
 
     vertices.resize(vertexCount);
     for (unsigned i = 0; i < vertexCount; i++) {
-        is >> vertices[i].x >> vertices[i].y >> vertices[i].z;
+        if (!(is >> vertices[i].x >> vertices[i].y >> vertices[i].z)) {
+            throw std::runtime_error("Invalid file format!");
+        }
     }
 
     faces.resize(faceCount);
     for (unsigned i = 0; i < faceCount; i++) {
         int count;
-        is >> count;
+
+        if (!(is >> count)) {
+            throw std::runtime_error("Invalid file format!");
+        }
+
         faces[i].vertexIdxs.resize(count);
         for (unsigned j = 0; j < count; j++) {
-            is >> faces[i].vertexIdxs[j];
+            if (!(is >> faces[i].vertexIdxs[j])) {
+                throw std::runtime_error("Invalid file format!");
+            }
         }
     }
 }
