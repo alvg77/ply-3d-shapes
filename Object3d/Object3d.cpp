@@ -72,11 +72,11 @@ Object3d Object3d::cut(std::function<bool(float, float, float)> f) const {
     }
 
     for (unsigned i = 0; i < getFaceCount(); ++i) {
-        const Face& f = faces[i];
+        const Face& face = faces[i];
         Face newFace;
         bool keep = true;
 
-        for (const unsigned idx : f.vertexIdxs) {
+        for (const unsigned idx : face.vertexIdxs) {
             if (oldToNew[idx] == -1) {
                 keep = false;
                 break;
