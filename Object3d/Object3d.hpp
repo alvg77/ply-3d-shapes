@@ -1,10 +1,11 @@
 #ifndef OBJECT3D_HPP
 #define OBJECT3D_HPP
 
+
+
 #include <string>
 #include <vector>
 #include <functional>
-
 
 struct Vertex {
     float x, y, z;

@@ -1,8 +1,9 @@
 #include "Object3d.hpp"
 
-#include <algorithm>
 #include <fstream>
 #include <cmath>
+#include <functional>
+#include <vector>
 
 Object3d::Object3d(const std::string& filename) {
     std::ifstream file(filename);
@@ -123,9 +124,6 @@ Object3d Object3d::generateCube(float size) {
 
     return cube;
 }
-
-#include <functional>
-#include <vector>
 
 Object3d Object3d::generateSphere(float radius) {
     Object3d sphere;
